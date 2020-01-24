@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DashBaord</title>
+</head>
+<body>
+<div><a href="/logout">logout</a>
+<div><a href="/addjob">Add_A_Job</a>
+{% for job in notSaved %}
+<div>
+    {% if job.posted_by.id == request.session.userid %}
+    <a href="/edit/{{job.id}}">EditJob</a>
+    <a href="/deletejob/{{job.id}}">DeleteJob</a>
+    {% endif %}
+    <h2>title: {{job.title}}</h2>
+    <p>description: {{job.desc}}</p>
+    <p>location: {{job.location}}</p>
+    <a href="/view/{{job.id}}">ViewJob</a></p>
+    <a href="/savejob/{{job.id}}">SaveJob</a>
+</div>
+{% endfor %}
+
+{% for job in isSaved %}
+<div>
+    <h2>title: {{job.title}}</h2>
+    <p>description: {{job.desc}}</p>
+    <p>location: {{job.location}}</p>
+    <a href="/view/{{job.id}}">ViewJob</a></p>
+    <a href="/deletejob/{{job.id}}">JobFinished</a>
+</div>
+{% endfor %}
+</body>
+</html>
